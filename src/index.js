@@ -70,11 +70,13 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <ul className="pizzas">
-        {pizzas.map((pizza, index) => (
-          <Pizza key={index} pizzaObj={pizza} />
-        ))}
-      </ul>
+      {pizzas ? (
+        <ul className="pizzas">
+          {pizzas.map((pizza, index) => (
+            <Pizza key={index} pizzaObj={pizza} />
+          ))}
+        </ul>
+      ) : null}
     </main>
   );
 }
@@ -102,7 +104,14 @@ function Footer() {
 
   return (
     <footer className="footer">
-      <p>{new Date().toLocaleTimeString()} We are open Now</p>;
+      {isOpen && (
+        <div className="order">
+          <p>
+            We are open until {closehours}:00, Come visit us or order online
+          </p>
+          <button className="btn">Order</button>
+        </div>
+      )}
     </footer>
   );
 }
